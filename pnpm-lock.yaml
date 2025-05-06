@@ -20,9 +20,15 @@ importers:
       '@nuxthub/core':
         specifier: ^0.8.25
         version: 0.8.25(db0@0.3.1(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250422.0)))(ioredis@5.6.0)(magicast@0.3.5)(vite@6.2.4(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))
+      '@paralleldrive/cuid2':
+        specifier: ^2.2.2
+        version: 2.2.2
       drizzle-orm:
         specifier: ^0.43.1
         version: 0.43.1(@cloudflare/workers-types@4.20250422.0)
+      drizzle-zod:
+        specifier: ^0.7.1
+        version: 0.7.1(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250422.0))(zod@3.24.4)
       nuxt:
         specifier: ^3.16.2
         version: 3.16.2(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.3.1(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250422.0)))(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250422.0))(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.0)(lightningcss@1.29.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.37.0)(terser@5.39.0)(typescript@5.8.3)(vite@6.2.4(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))(vue-tsc@2.2.10(typescript@5.8.3))(yaml@2.7.0)
@@ -805,6 +811,10 @@ packages:
     resolution: {integrity: sha512-z6okREyK8in0486a22Oro0k+YsuyEjDXJt46FpgeOgXqKJ9ElM8QPll0iuLBkpbH33ENiNbIPLd1cuClRQnhiw==}
     engines: {node: '>=18.0.0'}
 
+  '@noble/hashes@1.8.0':
+    resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
+    engines: {node: ^14.21.3 || >=16}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -952,6 +962,9 @@ packages:
 
   '@oxc-project/types@0.60.0':
     resolution: {integrity: sha512-prhfNnb3ATFHOCv7mzKFfwLij5RzoUz6Y1n525ZhCEqfq5wreCXL+DyVoq3ShukPo7q45ZjYIdjFUgjj+WKzng==}
+
+  '@paralleldrive/cuid2@2.2.2':
+    resolution: {integrity: sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA==}
 
   '@parcel/watcher-android-arm64@2.5.1':
     resolution: {integrity: sha512-KF8+j9nNbUN8vzOFDpRMsaKBHZ/mcjEjMToVMJOhTozkDonQFFrRcfdLWn6yWKCmJKmdVxSgHiYvTCef4/qcBA==}
@@ -2142,6 +2155,12 @@ packages:
         optional: true
       sqlite3:
         optional: true
+
+  drizzle-zod@0.7.1:
+    resolution: {integrity: sha512-nZzALOdz44/AL2U005UlmMqaQ1qe5JfanvLujiTHiiT8+vZJTBFhj3pY4Vk+L6UWyKFfNmLhk602Hn4kCTynKQ==}
+    peerDependencies:
+      drizzle-orm: '>=0.36.0'
+      zod: '>=3.0.0'
 
   duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
@@ -4884,6 +4903,8 @@ snapshots:
 
   '@netlify/serverless-functions-api@1.36.0': {}
 
+  '@noble/hashes@1.8.0': {}
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -5328,6 +5349,10 @@ snapshots:
   '@oxc-project/types@0.56.5': {}
 
   '@oxc-project/types@0.60.0': {}
+
+  '@paralleldrive/cuid2@2.2.2':
+    dependencies:
+      '@noble/hashes': 1.8.0
 
   '@parcel/watcher-android-arm64@2.5.1':
     optional: true
@@ -6382,6 +6407,11 @@ snapshots:
   drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250422.0):
     optionalDependencies:
       '@cloudflare/workers-types': 4.20250422.0
+
+  drizzle-zod@0.7.1(drizzle-orm@0.43.1(@cloudflare/workers-types@4.20250422.0))(zod@3.24.4):
+    dependencies:
+      drizzle-orm: 0.43.1(@cloudflare/workers-types@4.20250422.0)
+      zod: 3.24.4
 
   duplexer@0.1.2: {}
 

@@ -16,7 +16,7 @@ export const users = sqliteTable("users", {
 export const rooms = sqliteTable("rooms", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   title: text("title").notNull(),
-  code: text("code").notNull(),
+  code: text("code").unique().notNull(),
   password: text("password"),
 
   updatedAt: integer("updated_at", { mode: "timestamp" })
