@@ -4,17 +4,16 @@ import {
   type FieldErrorTextProps,
 } from "@ark-ui/vue/field";
 import { useField } from "./use-field";
+import { useFormContext } from "vee-validate";
 
 const props = defineProps<FieldErrorTextProps>();
 const delegated = reactiveOmit(props, ["class"]);
 
 const field = useField();
-const isInvalid = computed(() => field.errors.value.length > 0);
 </script>
 
 <template>
   <ArkFieldError
-    v-if="isInvalid"
     v-bind="delegated"
     :class="cx('text-sm text-red-500', props.class)"
   >

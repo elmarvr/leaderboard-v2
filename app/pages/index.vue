@@ -2,6 +2,10 @@
 import { z } from "zod";
 import type { SubmissionHandler } from "~/components/ui/form.vue";
 
+definePageMeta({
+  middleware: ["authenticated"],
+});
+
 const router = useRouter();
 
 const schema = z.object({
@@ -9,7 +13,7 @@ const schema = z.object({
 });
 
 const onSubmit: SubmissionHandler<typeof schema> = async ({ title }) => {
-  const response = await $fetch("/api/rooms/create", {
+  const response = await $fetch("/api/rooms", {
     method: "POST",
     body: { title },
   });

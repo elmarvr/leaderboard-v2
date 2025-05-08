@@ -1,4 +1,9 @@
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import {
+  sqliteTable,
+  text,
+  integer,
+  primaryKey,
+} from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -28,3 +33,33 @@ export const rooms = sqliteTable("rooms", {
     .notNull()
     .$default(() => new Date()),
 });
+
+export const members = sqliteTable(
+  "members",
+  {
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    roomId: integer("room_id")
+      .notNull()
+      .references(() => rooms.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+
+    updatedAt: integer("updated_at", { mode: "timestamp" })
+      .notNull()
+      .$onUpdate(() => new Date()),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$default(() => new Date()),
+  },
+  (table) => [
+    primaryKey({
+      columns: [table.userId, table.roomId],
+    }),
+  ]
+);

@@ -22,6 +22,13 @@
       "when": 1746562297514,
       "tag": "0002_skinny_madame_hydra",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1746724469151,
+      "tag": "0003_famous_shocker",
+      "breakpoints": true
     }
   ]
 }

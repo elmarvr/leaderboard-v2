@@ -4,25 +4,25 @@ import {
   type FieldRootProps,
 } from "@ark-ui/vue/field";
 import { provideField } from "./use-field";
+import { useFormContext } from "vee-validate";
 
 const props = defineProps<FieldRootProps & { name: string }>();
+const delegated = reactiveOmit(props, ["class"]);
 
 const name = toRef(props, "name");
 const field = provideField(name);
 
-const delegated = computed(() => {
-  const { class: _, ...rest } = props;
+const form = useFormContext();
 
-  return {
-    ...rest,
-    invalid: field.errors.value.length > 0,
-  };
+const isInvalid = computed(() => {
+  return field.errors.value.length > 0 && form.submitCount.value > 0;
 });
 </script>
 
 <template>
   <ArkFieldRoot
     v-bind="delegated"
+    :invalid="isInvalid"
     :class="cx('flex flex-col gap-1', props.class)"
   >
     <slot />

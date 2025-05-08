@@ -14,9 +14,11 @@ import {
 } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import type { z } from "zod";
+import type { ClassValue } from "cva";
 
 const props = defineProps<{
   schema: TSchema;
+  class?: ClassValue;
 }>();
 
 const emit = defineEmits<{
@@ -47,7 +49,7 @@ defineExpose({
 </script>
 
 <template>
-  <form @submit="onSubmit">
+  <form @submit="onSubmit" :class="cx('', props.class)">
     <slot />
   </form>
 </template>

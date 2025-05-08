@@ -1,5 +1,4 @@
 import { init } from "@paralleldrive/cuid2";
-import { RoomInsertSchema } from "~~/server/utils/drizzle";
 
 export default eventHandler(async (event) => {
   const body = await readValidatedBody(
@@ -21,6 +20,20 @@ export default eventHandler(async (event) => {
     })
     .returning()
     .get();
+
+  const session = await getUserSession(event);
+
+  if (!session.user) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Unauthorized",
+    });
+  }
+
+  await db.insert(table.members).values({
+    userId: session.user.id,
+    roomId: room.id,
+  });
 
   return room;
 });

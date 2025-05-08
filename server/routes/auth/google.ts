@@ -20,6 +20,7 @@ export default defineOAuthGoogleEventHandler({
     await setUserSession(event, {
       user: existingUser,
     });
+
     return sendRedirect(event, "/");
   },
 });
