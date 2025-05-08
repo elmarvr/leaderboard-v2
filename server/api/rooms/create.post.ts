@@ -25,6 +25,6 @@ export default eventHandler(async (event) => {
   return room;
 });
 
-const createCode = () => {
+function createCode() {
   return init({ length: 6 })().toUpperCase();
-};
+}

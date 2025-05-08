@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxt/fonts",
     "@nuxt/image",
+    "@vueuse/nuxt",
     "nuxt-auth-utils",
   ],
   devtools: { enabled: true },
