@@ -1,4 +1,5 @@
 import { init } from "@paralleldrive/cuid2";
+import { createVisibleError } from "~~/server/utils/error";
 
 export default eventHandler(async (event) => {
   const body = await readValidatedBody(
@@ -24,9 +25,10 @@ export default eventHandler(async (event) => {
   const session = await getUserSession(event);
 
   if (!session.user) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: "Unauthorized",
+    throw createVisibleError({
+      type: "authentication",
+      code: "unauthorized",
+      message: "You must be signed in to create a room",
     });
   }
 

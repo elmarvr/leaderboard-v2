@@ -23,8 +23,9 @@ const onSubmit: SubmissionHandler<typeof schema> = async ({ title }) => {
 </script>
 
 <template>
-  <NuxtLink to="auth/sign-in"> Sign in </NuxtLink>
+  <FormRoomJoin />
 
+  <h1>Create a Room</h1>
   <UiForm :schema="schema" @submit="onSubmit">
     <UiField name="title">
       <UiFieldLabel> Title </UiFieldLabel>

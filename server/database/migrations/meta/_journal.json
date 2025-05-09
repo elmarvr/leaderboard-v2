@@ -29,6 +29,20 @@
       "when": 1746724469151,
       "tag": "0003_famous_shocker",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1746786929305,
+      "tag": "0004_curved_colossus",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1746787318744,
+      "tag": "0005_confused_paibok",
+      "breakpoints": true
     }
   ]
 }

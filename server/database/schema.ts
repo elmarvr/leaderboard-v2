@@ -3,6 +3,7 @@ import {
   text,
   integer,
   primaryKey,
+  unique,
 } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
@@ -37,6 +38,7 @@ export const rooms = sqliteTable("rooms", {
 export const members = sqliteTable(
   "members",
   {
+    id: integer("id").primaryKey({ autoIncrement: true }),
     userId: integer("user_id")
       .notNull()
       .references(() => users.id, {
@@ -57,9 +59,5 @@ export const members = sqliteTable(
       .notNull()
       .$default(() => new Date()),
   },
-  (table) => [
-    primaryKey({
-      columns: [table.userId, table.roomId],
-    }),
-  ]
+  (table) => [unique().on(table.userId, table.roomId)]
 );

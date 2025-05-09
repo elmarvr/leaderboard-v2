@@ -1,4 +1,4 @@
-import { RoomSchema, User } from "~~/server/utils/drizzle";
+import { RoomSchema } from "~~/server/utils/drizzle";
 
 export default eventHandler(async (event) => {
   const { code } = await getValidatedRouterParams(
@@ -20,9 +20,10 @@ export default eventHandler(async (event) => {
     .all();
 
   if (result.length === 0) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: "Room not found",
+    throw createVisibleError({
+      type: "not_found",
+      code: "resource_not_found",
+      message: "Room not found",
     });
   }
 
