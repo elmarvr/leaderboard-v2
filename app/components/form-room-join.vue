@@ -30,7 +30,6 @@ const onSubmit: SubmissionHandler<typeof schema> = async ({ code }, ctx) => {
 </script>
 
 <template>
-  <h1>Join a Room</h1>
   <UiForm :schema="schema" @submit="onSubmit">
     <UiField name="code">
       <UiFieldLabel> Code </UiFieldLabel>

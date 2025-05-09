@@ -42,7 +42,7 @@ type NestedValues<T> = {
 
 export function unwrapError(error: unknown): unknown {
   if (!(error instanceof FetchError)) {
-    throw error;
+    return error;
   }
 
   return error.data;

@@ -1,28 +1,39 @@
 <script setup lang="ts">
 import type { ClassValue, VariantProps } from "cva";
+import type { ButtonHTMLAttributes } from "vue";
+import { ark, type PolymorphicProps } from "@ark-ui/vue/factory";
 
 const buttonVariants = cva({
-  base: "px-3 h-10 rounded-md text-sm font-medium transition-colors",
+  base: "px-4 h-10 rounded-md text-sm font-medium transition-colors",
   variants: {
     variant: {
       default: "bg-green-500 text-white hover:bg-green-500/80",
     },
   },
+  defaultVariants: {
+    variant: "default",
+  },
 });
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 
-const props = defineProps<{
+interface ButtonProps extends PolymorphicProps {
   variant?: ButtonVariants["variant"];
   class?: ClassValue;
-}>();
+  type?: ButtonHTMLAttributes["type"];
+}
+
+const props = defineProps<ButtonProps>();
+
+const delegated = reactiveOmit(props, ["variant", "class"]);
 </script>
 
 <template>
-  <button
+  <ark.button
+    v-bind="delegated"
     :class="buttonVariants({ variant, class: props.class })"
     data-slot="button"
   >
     <slot />
-  </button>
+  </ark.button>
 </template>

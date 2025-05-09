@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   runtimeConfig: {},
+
   hub: {
     database: true,
   },

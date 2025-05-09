@@ -49,7 +49,7 @@ defineExpose({
 </script>
 
 <template>
-  <form @submit="onSubmit" :class="cx('', props.class)">
+  <form @submit="onSubmit" :class="cx('space-y-6', props.class)">
     <slot />
   </form>
 </template>
