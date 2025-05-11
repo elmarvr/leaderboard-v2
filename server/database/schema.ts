@@ -51,6 +51,7 @@ export const members = sqliteTable(
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
+    score: integer("score").notNull().default(0),
 
     updatedAt: integer("updated_at", { mode: "timestamp" })
       .notNull()

@@ -1,4 +1,4 @@
-import { useField as __useField } from "vee-validate";
+import { useField as __useField, type FieldContext } from "vee-validate";
 
 const [provideField, injectField] = createInjectionState(
   (name: MaybeRef<string>) => {
@@ -8,14 +8,16 @@ const [provideField, injectField] = createInjectionState(
   }
 );
 
-function useField() {
+function useField<T>() {
   const ctx = injectField();
+
   if (!ctx) {
-    throw new Error(
-      `useField() is called outside of a component that provides the field context.`
-    );
+    return __useField<T>("standalone", [], {
+      controlled: false,
+    });
   }
-  return ctx;
+
+  return ctx as FieldContext<T>;
 }
 
 export { provideField, useField };

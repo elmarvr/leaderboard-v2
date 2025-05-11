@@ -23,7 +23,7 @@ const isInvalid = computed(() => {
   <ArkFieldRoot
     v-bind="delegated"
     :invalid="isInvalid"
-    :class="cx('flex flex-col gap-1', props.class)"
+    :class="cx('flex flex-col gap-1.5', props.class)"
   >
     <slot />
   </ArkFieldRoot>

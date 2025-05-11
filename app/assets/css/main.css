@@ -1,1 +1,62 @@
 @import "tailwindcss";
+
+:root {
+  --color-background: theme(colors.zinc.900);
+  --color-foreground: theme(colors.zinc.100);
+
+  --color-primary: theme(colors.green.600);
+  --color-primary-foreground: theme(colors.zinc.100);
+
+  --color-popover: theme(colors.zinc.900);
+  --color-popover-foreground: theme(colors.zinc.100);
+
+  --color-accent: theme(colors.zinc.800);
+  --color-accent-foreground: theme(colors.zinc.100);
+
+  --color-muted: theme(colors.zinc.700);
+  --color-muted-foreground: theme(colors.zinc.500);
+
+  --color-card: theme(colors.zinc.800);
+  --color-card-foreground: theme(colors.zinc.100);
+
+  --color-border: theme(colors.zinc.800);
+  --color-input: theme(colors.zinc.700);
+  --color-ring: theme(colors.blue.500);
+  --color-destructive: theme(colors.red.700);
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+
+  --color-popover: var(--color-popover);
+  --color-popover-foreground: var(--color-popover-foreground);
+
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+
+  --color-destructive: var(--color-destructive);
+  --color-border: var(--color-border);
+  --color-input: var(--color-input);
+  --color-ring: var(--color-ring);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+}

@@ -11,6 +11,12 @@ export default eventHandler(async (event) => {
   const result = await db
     .select({
       room: table.rooms,
+      member: {
+        id: table.members.id,
+        score: table.members.score,
+        createdAt: table.members.createdAt,
+        updatedAt: table.members.updatedAt,
+      },
       user: table.users,
     })
     .from(table.rooms)
@@ -28,10 +34,13 @@ export default eventHandler(async (event) => {
   }
 
   const room = result[0].room;
-  const users = result.map((r) => r.user);
+  const members = result.map((r) => ({
+    ...r.member,
+    user: r.user,
+  }));
 
   return {
     ...room,
-    users,
+    members,
   };
 });

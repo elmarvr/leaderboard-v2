@@ -23,14 +23,10 @@ const onSubmit: SubmissionHandler<typeof schema> = async ({ title }) => {
 </script>
 
 <template>
-  <div class="space-y-12">
-    <div>
-      <h1>Join a Room</h1>
-      <FormRoomJoin />
-    </div>
+  <div class="space-y-12 max-w-lg mx-auto">
+    <FormRoomJoin />
 
-    <div>
-      <h1>Create a Room</h1>
+    <UiCard>
       <UiForm :schema="schema" @submit="onSubmit">
         <UiField name="title">
           <UiFieldLabel> Title </UiFieldLabel>
@@ -38,8 +34,8 @@ const onSubmit: SubmissionHandler<typeof schema> = async ({ title }) => {
           <UiFieldError />
         </UiField>
 
-        <UiButton>Submit</UiButton>
+        <UiButton>Create Room</UiButton>
       </UiForm>
-    </div>
+    </UiCard>
   </div>
 </template>

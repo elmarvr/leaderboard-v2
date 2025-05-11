@@ -10,3 +10,4 @@ export const { cva, compose, cx } = defineConfig({
 });
 
 export type { ClassValue } from "cva";
+// export type WithClass<T> = T;

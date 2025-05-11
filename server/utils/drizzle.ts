@@ -3,7 +3,6 @@ export * from "drizzle-orm/sql";
 
 import * as schema from "../database/schema";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
 
 export const table = schema;
 
@@ -28,17 +27,12 @@ export const RoomInsertSchema = createInsertSchema(schema.rooms, {
   code: (s) => s.length(6),
 });
 
-export function isD1Error(error: unknown): error is D1Error {
-  const result = D1ErrorSchema.safeParse(error);
-  return result.success;
-}
+export type Member = typeof schema.members.$inferSelect;
+export const MemberSchema = createSelectSchema(schema.members, {
+  score: (s) => s.min(0),
+});
 
-type D1Error = z.infer<typeof D1ErrorSchema>;
-const D1ErrorSchema = z
-  .object({
-    cause: z.object({
-      message: z.string().optional(),
-      code: z.string().optional(),
-    }),
-  })
-  .passthrough();
+export type MemberInsert = typeof schema.members.$inferInsert;
+export const MemberInsertSchema = createInsertSchema(schema.members, {
+  score: (s) => s.min(0),
+});

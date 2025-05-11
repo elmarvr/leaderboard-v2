@@ -15,12 +15,10 @@ const name = computed(() => unref(field.name));
 <template>
   <ArkFieldInput
     v-bind="delegated"
-    :class="
-      cx('h-9 text-sm px-3 border border-neutral-400 rounded-md', props.class)
-    "
+    :class="cx('h-9 text-sm px-3 border border-input rounded-md', props.class)"
     :modelValue="field.value.value"
-    :onUpdate:modelValue="field.handleChange"
-    :onBlur="field.handleBlur"
+    @update:model-value="field.handleChange"
+    @blur="field.handleBlur"
     :name="name"
     as-child
   >

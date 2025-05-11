@@ -4,7 +4,6 @@ import {
   type FieldErrorTextProps,
 } from "@ark-ui/vue/field";
 import { useField } from "./use-field";
-import { useFormContext } from "vee-validate";
 
 const props = defineProps<FieldErrorTextProps>();
 const delegated = reactiveOmit(props, ["class"]);
@@ -15,7 +14,7 @@ const field = useField();
 <template>
   <ArkFieldError
     v-bind="delegated"
-    :class="cx('text-sm text-red-500', props.class)"
+    :class="cx('text-sm text-destructive', props.class)"
   >
     <slot>
       {{ field.errorMessage }}

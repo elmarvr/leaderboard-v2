@@ -5,15 +5,18 @@ import {
   type ColumnDef,
   getCoreRowModel,
 } from "@tanstack/vue-table";
-import type { User } from "~~/server/utils/drizzle";
 
-type UserColumnData = Pick<User, "id" | "name">;
+type MemberColumnData = {
+  id: number;
+  name: string;
+  score: number;
+};
 
 const props = defineProps<{
-  data: UserColumnData[];
+  data: MemberColumnData[];
 }>();
 
-const columns: ColumnDef<UserColumnData>[] = [
+const columns: ColumnDef<MemberColumnData>[] = [
   {
     accessorKey: "id",
     header: "ID",
@@ -21,6 +24,10 @@ const columns: ColumnDef<UserColumnData>[] = [
   {
     accessorKey: "name",
     header: "Name",
+  },
+  {
+    accessorKey: "score",
+    header: "Score",
   },
 ];
 

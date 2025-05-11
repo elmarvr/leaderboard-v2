@@ -4,10 +4,10 @@ import type { ButtonHTMLAttributes } from "vue";
 import { ark, type PolymorphicProps } from "@ark-ui/vue/factory";
 
 const buttonVariants = cva({
-  base: "px-4 h-10 rounded-md text-sm font-medium transition-colors",
+  base: "px-4 h-9 rounded-md text-sm font-medium transition-colors",
   variants: {
     variant: {
-      default: "bg-green-500 text-white hover:bg-green-500/80",
+      default: "bg-primary text-primary-foreground hover:bg-primary/80",
     },
   },
   defaultVariants: {

@@ -43,6 +43,13 @@
       "when": 1746787318744,
       "tag": "0005_confused_paibok",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1746920667703,
+      "tag": "0006_wet_gambit",
+      "breakpoints": true
     }
   ]
 }
