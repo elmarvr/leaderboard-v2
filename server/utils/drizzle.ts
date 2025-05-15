@@ -36,3 +36,6 @@ export type MemberInsert = typeof schema.members.$inferInsert;
 export const MemberInsertSchema = createInsertSchema(schema.members, {
   score: (s) => s.min(0),
 });
+
+export type Game = typeof schema.games.$inferSelect;
+export const GameSchema = createSelectSchema(schema.games, {});

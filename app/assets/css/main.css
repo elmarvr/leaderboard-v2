@@ -58,7 +58,10 @@
 
   * {
     border-color: var(--color-border);
+  }
+
+  *:focus-visible {
     --tw-ring-offset-color: var(--color-background);
-    --tw-ring-color: var(--color-ring);
+    --tw-ring-color: color-mix(in oklab, var(--color-ring) 60%, transparent);
   }
 }

@@ -12,7 +12,7 @@ const delegated = reactiveOmit(props, ["class"]);
 const combobox = useComboboxContext();
 
 const isRendered = computed(() => {
-  return combobox.value.collection.has(props.item);
+  return combobox.value.collection.hasItem(props.item);
 });
 </script>
 
@@ -27,8 +27,6 @@ const isRendered = computed(() => {
       )
     "
   >
-    <ArkComboboxItemText>
-      <slot />
-    </ArkComboboxItemText>
+    <slot />
   </ArkComboboxItem>
 </template>

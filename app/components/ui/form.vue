@@ -29,7 +29,7 @@ const emit = defineEmits<{
   ): void;
 }>();
 
-const form = useForm({
+const form = useForm<TSchema["_input"], TSchema["_output"]>({
   validationSchema: computed(() => toTypedSchema(props.schema)),
   get initialValues() {
     return props.initialValues as any;

@@ -1,13 +1,13 @@
 import { init } from "@paralleldrive/cuid2";
-import { createVisibleError } from "~~/server/utils/error";
+import { validateBody } from "~~/server/utils/validate";
 
 export default eventHandler(async (event) => {
-  const body = await readValidatedBody(
+  const body = await validateBody(
     event,
     RoomInsertSchema.pick({
       title: true,
       password: true,
-    }).parse
+    })
   );
 
   const db = useDrizzle();

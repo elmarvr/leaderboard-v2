@@ -1,11 +1,7 @@
-import { createVisibleError } from "~~/server/utils/error";
+import { validateParams } from "~~/server/utils/validate";
 
 export default eventHandler(async (event) => {
-  const { code } = await getValidatedRouterParams(
-    event,
-    RoomSchema.pick({ code: true }).parse
-  );
-
+  const { code } = await validateParams(event, RoomSchema.pick({ code: true }));
   const { user } = await getUserSession(event);
 
   if (!user) {

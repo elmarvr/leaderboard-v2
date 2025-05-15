@@ -50,6 +50,20 @@
       "when": 1746920667703,
       "tag": "0006_wet_gambit",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1747325038744,
+      "tag": "0007_chief_captain_marvel",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1747325099253,
+      "tag": "0008_old_overlord",
+      "breakpoints": true
     }
   ]
 }

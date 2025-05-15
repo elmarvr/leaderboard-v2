@@ -41,16 +41,10 @@ export const members = sqliteTable(
     id: integer("id").primaryKey({ autoIncrement: true }),
     userId: integer("user_id")
       .notNull()
-      .references(() => users.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
+      .references(() => users.id),
     roomId: integer("room_id")
       .notNull()
-      .references(() => rooms.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
+      .references(() => rooms.id),
     score: integer("score").notNull().default(0),
 
     updatedAt: integer("updated_at", { mode: "timestamp" })
@@ -62,3 +56,24 @@ export const members = sqliteTable(
   },
   (table) => [unique().on(table.userId, table.roomId)]
 );
+
+export const games = sqliteTable("games", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  roomId: integer("room_id")
+    .references(() => rooms.id)
+    .notNull(),
+
+  winnerId: integer("winner_id")
+    .notNull()
+    .references(() => members.id),
+  loserId: integer("loser_id")
+    .notNull()
+    .references(() => members.id),
+
+  updatedAt: integer("updated_at", { mode: "timestamp" })
+    .notNull()
+    .$onUpdate(() => new Date()),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .notNull()
+    .$default(() => new Date()),
+});

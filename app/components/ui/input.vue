@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useForwardPropsEmits } from "@ark-ui/vue";
 import type { ClassValue } from "cva";
 import type { InputHTMLAttributes } from "vue";
 

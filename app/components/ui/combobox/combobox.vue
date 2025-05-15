@@ -6,6 +6,7 @@ import {
   type CollectionItem,
   type ComboboxRootEmits,
   type ComboboxRootProps,
+  type ListCollection,
 } from "@ark-ui/vue/combobox";
 import { useField } from "../field/use-field";
 import { type Filter } from "~/composables/use-filter";
@@ -13,6 +14,7 @@ import { type Filter } from "~/composables/use-filter";
 const props = defineProps<
   ComboboxRootProps<T> & {
     filter?: Filter;
+    collection: ListCollection<T>;
   }
 >();
 const emit = defineEmits<ComboboxRootEmits<T>>();
@@ -38,20 +40,22 @@ const collection = computed(() => {
 });
 
 const combobox = useCombobox(
-  computed(() => ({
-    collection: collection.value,
-    value: field.value.value,
-    onValueChange(details: { value: string[] }) {
-      field.handleChange(details.value);
-    },
-    onBlur() {
-      field.handleBlur();
-    },
-    inputValue: inputValue.value,
-    onInputValueChange(details: { inputValue: string }) {
-      inputValue.value = details.inputValue;
-    },
-  })),
+  computed(() => {
+    return {
+      collection: collection.value,
+      value: field.value.value,
+      onValueChange(details: { value: string[] }) {
+        field.handleChange(details.value);
+      },
+      onBlur() {
+        field.handleBlur();
+      },
+      inputValue: inputValue.value,
+      onInputValueChange(details: { inputValue: string }) {
+        inputValue.value = details.inputValue;
+      },
+    };
+  }),
   emit
 );
 </script>
