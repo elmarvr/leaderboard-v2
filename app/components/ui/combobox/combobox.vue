@@ -1,13 +1,14 @@
 <script setup lang="ts" generic="T extends CollectionItem">
 import {
   ComboboxRootProvider as ArkComboboxRootProvider,
+  createListCollection,
   useCombobox,
   type CollectionItem,
   type ComboboxRootEmits,
   type ComboboxRootProps,
 } from "@ark-ui/vue/combobox";
 import { useField } from "../field/use-field";
-import { useFilter, type Filter } from "./use-filter";
+import { type Filter } from "~/composables/use-filter";
 
 const props = defineProps<
   ComboboxRootProps<T> & {
@@ -21,15 +22,19 @@ const field = useField<string[]>();
 const filter = useFilter(computed(() => props.filter));
 
 const collection = computed(() => {
-  const query = props.collection?.filter((itemStr) => {
+  if (!props.collection) {
+    return createListCollection({ items: [] as T[] });
+  }
+
+  const query = props.collection.filter((itemStr) => {
     return filter(itemStr, inputValue.value);
   });
 
-  if (query?.size === 0) {
-    return props.collection?.copy();
+  if (query.size === 0) {
+    return props.collection.copy();
   }
 
-  return query?.copy();
+  return query.copy();
 });
 
 const combobox = useCombobox(

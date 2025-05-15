@@ -3,21 +3,21 @@ export type SubmissionHandler<TSchema extends z.ZodTypeAny> = (
   values: TSchema["_output"],
   ctx: SubmissionContext<TSchema["_input"]>
 ) => void;
+
+export type PartialDeep<T> = {
+  [K in keyof T]?: T[K] extends object ? PartialDeep<T[K]> : T[K] | undefined;
+};
 </script>
 
 <script setup lang="ts" generic="TSchema extends z.ZodTypeAny">
-import {
-  useForm,
-  type Path,
-  type SubmissionContext,
-  type ValidationOptions,
-} from "vee-validate";
+import { useForm, type SubmissionContext } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import type { z } from "zod";
 import type { ClassValue } from "cva";
 
 const props = defineProps<{
   schema: TSchema;
+  initialValues?: PartialDeep<TSchema["_input"]>;
   class?: ClassValue;
 }>();
 
@@ -31,6 +31,9 @@ const emit = defineEmits<{
 
 const form = useForm({
   validationSchema: computed(() => toTypedSchema(props.schema)),
+  get initialValues() {
+    return props.initialValues as any;
+  },
 });
 
 const onSubmit = form.handleSubmit(
@@ -39,12 +42,7 @@ const onSubmit = form.handleSubmit(
 );
 
 defineExpose({
-  validateField(
-    path: Path<TSchema["_input"]>,
-    opts: Partial<ValidationOptions>
-  ) {
-    return form.validateField(path, opts);
-  },
+  api: form,
 });
 </script>
 
