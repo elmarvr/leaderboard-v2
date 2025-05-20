@@ -78,11 +78,16 @@ function mergeHeaders(...headers: HeadersInit[]) {
       }
       continue;
     }
-    if (typeof header === "object") {
+    if (isObject(header)) {
       for (const key in header) {
         _headers.append(key, header[key]!);
       }
     }
   }
+
   return _headers;
+}
+
+function isObject(value: any): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
 }
