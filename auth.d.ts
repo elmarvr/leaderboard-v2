@@ -1,14 +1,14 @@
-import type { User as DatabaseUser } from "./server/utils/drizzle";
+import type { User as DatabaseUser } from "./server/core/user";
 
 declare module "#auth-utils" {
   interface User {
-    id: DatabaseUser["id"];
-    email: DatabaseUser["email"];
-    name: DatabaseUser["name"];
+    id: DatabaseUser.Info["id"];
+    email: DatabaseUser.Info["email"];
+    name: DatabaseUser.Info["name"];
   }
 
   interface UserSession {
-    // user: User;
+    user?: User;
   }
 
   interface SecureSessionData {

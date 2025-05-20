@@ -2,7 +2,7 @@
 import { z } from "zod";
 import type { SubmissionHandler } from "~/components/ui/form.vue";
 
-const route = useRoute();
+const { $api } = useNuxtApp();
 
 const schema = z.object({
   winner: z.string().array(),
@@ -17,8 +17,8 @@ const onSubmit: SubmissionHandler<typeof schema> = async (values, ctx) => {
     return;
   }
 
-  await $fetch(`/api/rooms/${route.params.code}/game`, {
-    method: "POST",
+  await $api("/room/game", {
+    method: "post",
     body: {
       winnerId: parseInt(values.winner[0]!),
       loserId: parseInt(values.loser[0]!),
@@ -31,18 +31,18 @@ const onSubmit: SubmissionHandler<typeof schema> = async (values, ctx) => {
   <UiCard>
     <UiForm :schema="schema" @submit="onSubmit">
       <UiField name="winner">
-        <ComboboxMembers>
+        <ComboboxParticipants>
           <UiComboboxLabel>Winner</UiComboboxLabel>
           <UiComboboxControl />
-        </ComboboxMembers>
+        </ComboboxParticipants>
         <UiFieldError />
       </UiField>
 
       <UiField name="loser">
-        <ComboboxMembers>
+        <ComboboxParticipants>
           <UiComboboxLabel>Loser</UiComboboxLabel>
           <UiComboboxControl />
-        </ComboboxMembers>
+        </ComboboxParticipants>
         <UiFieldError />
       </UiField>
 

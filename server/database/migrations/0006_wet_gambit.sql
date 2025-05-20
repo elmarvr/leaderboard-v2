@@ -1,1 +1,0 @@
-ALTER TABLE `members` ADD `score` integer DEFAULT 0 NOT NULL;

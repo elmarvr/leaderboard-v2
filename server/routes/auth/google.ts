@@ -1,24 +1,18 @@
+import { User } from "~~/server/core/user";
+
 export default defineOAuthGoogleEventHandler({
   async onSuccess(event, { user }) {
-    const db = useDrizzle();
+    let dbUser = await User.fromEmail(user.email);
 
-    const existingUser = await db
-      .insert(table.users)
-      .values({
-        name: user.name,
+    if (!dbUser) {
+      dbUser = await User.create({
         email: user.email,
-      })
-      .onConflictDoUpdate({
-        target: table.users.email,
-        set: {
-          name: user.name,
-        },
-      })
-      .returning()
-      .get();
+        name: user.name,
+      });
+    }
 
     await setUserSession(event, {
-      user: existingUser,
+      user: dbUser,
     });
 
     return sendRedirect(event, "/");

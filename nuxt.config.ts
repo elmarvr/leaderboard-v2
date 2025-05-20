@@ -13,6 +13,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   future: { compatibilityVersion: 4 },
   compatibilityDate: "2025-03-01",
+  experimental: {
+    asyncContext: true,
+  },
   css: ["~/assets/css/main.css"],
   vite: {
     plugins: [tailwindcss()],

@@ -6,17 +6,17 @@ import {
   getCoreRowModel,
 } from "@tanstack/vue-table";
 
-type MemberColumnData = {
-  id: number;
+type ParticipantColumnData = {
+  id: string;
   name: string;
   score: number;
 };
 
 const props = defineProps<{
-  data: MemberColumnData[];
+  data: ParticipantColumnData[];
 }>();
 
-const columns: ColumnDef<MemberColumnData>[] = [
+const columns: ColumnDef<ParticipantColumnData>[] = [
   {
     accessorKey: "id",
     header: "ID",

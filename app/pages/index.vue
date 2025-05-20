@@ -6,6 +6,8 @@ definePageMeta({
   middleware: ["authenticated"],
 });
 
+const { $api } = useNuxtApp();
+
 const router = useRouter();
 
 const schema = z.object({
@@ -13,8 +15,8 @@ const schema = z.object({
 });
 
 const onSubmit: SubmissionHandler<typeof schema> = async ({ title }) => {
-  const response = await $fetch("/api/rooms", {
-    method: "POST",
+  const response = await $api("/room", {
+    method: "post",
     body: { title },
   });
 
